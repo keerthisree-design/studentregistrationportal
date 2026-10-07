@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#fff8f4">
+    <meta name="description" content="Your student registration and profile portal.">
+    <title>Peachwood — Student Portal</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <main id="auth-screen" class="auth-screen">
+      <section class="auth-brand" aria-label="Welcome to Peachwood">
+        <a class="brand brand-light" href="/" aria-label="Peachwood home">
+          <span class="brand-mark">p</span><span>peachwood<span class="brand-dot">.</span></span>
+        </a>
+        <div class="brand-message">
+          <span class="eyebrow">YOUR CAMPUS, YOUR SPACE</span>
+          <h1>Your next chapter<br>starts here.</h1>
+          <p>A calm, simple place to register as a student and keep your personal and study details up to date.</p>
+          <div class="brand-note"><span aria-hidden="true">✳</span><span>Made for your student journey.</span></div>
+        </div>
+        <div class="brand-decoration decoration-one"></div>
+        <div class="brand-decoration decoration-two"></div>
+        <div class="brand-footer">Your student life, a little more organized.</div>
+      </section>
+      <section class="auth-panel">
+        <div class="auth-panel-top"><span>STUDENT PORTAL</span><span class="online-dot">Your space awaits</span></div>
+        <form id="auth-form" class="auth-form">
+          <div class="auth-heading">
+            <span class="eyebrow peach-eyebrow" id="auth-eyebrow">WELCOME BACK</span>
+            <h2 id="auth-title">Good to see you.</h2>
+            <p id="auth-subtitle">Sign in to view your student registration and profile.</p>
+          </div>
+          <label id="name-field" class="field hidden">Full name<input name="name" autocomplete="name" maxlength="80" placeholder="e.g. Jordan Lee"></label>
+          <label class="field">Email address<input name="email" type="email" autocomplete="email" maxlength="254" placeholder="you@university.edu" required></label>
+          <label class="field">Password<input name="password" type="password" autocomplete="current-password" minlength="8" maxlength="128" placeholder="At least 8 characters" required></label>
+          <div id="extra-fields" class="extra-fields hidden">
+            <label class="field">Study program <span class="optional">(optional)</span><input name="program" maxlength="100" placeholder="e.g. Environmental Science"></label>
+            <label class="field">Study year <span class="optional">(optional)</span><select name="year"><option value="">Choose a year</option><option value="1">Year 1</option><option value="2">Year 2</option><option value="3">Year 3</option><option value="4">Year 4</option><option value="5">Year 5</option><option value="6">Year 6</option><option value="7">Year 7</option><option value="8">Year 8</option></select></label>
+          </div>
+          <p id="auth-error" class="form-error" role="alert"></p>
+          <button id="auth-submit" class="button button-primary button-wide" type="submit">Sign in →</button>
+          <p class="auth-switch"><span id="switch-prompt">New to Peachwood?</span> <button id="switch-auth" class="text-button" type="button">Register as a student</button></p>
+        </form>
+        <div class="auth-footnote">Your profile is private and only visible to you.</div>
+      </section>
+    </main>
+
+    <div id="app-screen" class="app-shell hidden">
+      <aside class="sidebar">
+        <a class="brand sidebar-brand" href="#" aria-label="Peachwood home"><span class="brand-mark">p</span><span>peachwood<span class="brand-dot">.</span></span></a>
+        <div class="workspace-label">STUDENT SPACE</div>
+        <nav class="sidebar-nav" aria-label="Student navigation">
+          <button class="nav-item active" data-view="overview"><span class="nav-icon">⌂</span> My overview</button>
+          <button class="nav-item" data-view="profile"><span class="nav-icon">◉</span> My profile</button>
+        </nav>
+        <div class="sidebar-spacer"></div>
+        <div class="sidebar-help"><span class="help-icon">✳</span><strong>Your student space</strong><p>Your registration and personal details, all in one place.</p></div>
+        <button id="logout-button" class="logout-button"><span class="nav-icon">↪</span> Sign out</button>
+        <div class="sidebar-user"><span id="sidebar-avatar" class="avatar">S</span><span class="user-label"><strong id="sidebar-name">Student</strong><small id="sidebar-email"></small></span></div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div class="breadcrumbs"><span>Student space</span><span class="crumb-slash">/</span><strong id="page-crumb">My overview</strong></div>
+          <div class="topbar-right"><span class="today-label" id="today-label"></span><button class="top-avatar" data-view="profile" aria-label="Open my profile">S</button></div>
+        </header>
+
+        <section id="view-overview" class="content-view">
+          <div class="welcome-row">
+            <div><span class="eyebrow peach-eyebrow">YOUR STUDENT SPACE</span><h1 id="welcome-title">Welcome back.</h1><p>Your registration details and student profile at a glance.</p></div>
+            <button class="button button-primary" data-view="profile">View my profile <span aria-hidden="true">→</span></button>
+          </div>
+
+          <section class="registration-banner">
+            <div class="registration-banner-copy"><span class="eyebrow">STUDENT REGISTRATION</span><h2>You're in the right place.</h2><p>Check your student details below and keep your profile up to date.</p></div>
+            <div class="registration-status"><span class="status-check">✓</span><span><small>REGISTRATION STATUS</small><strong id="registration-status">Registered</strong></span></div>
+            <span class="banner-flower" aria-hidden="true">✳</span>
+          </section>
+
+          <div class="student-facts">
+            <article class="fact-card fact-card-peach"><span class="fact-icon">⌑</span><span class="fact-label">Student ID</span><strong id="student-id">—</strong><small>Your unique student number</small></article>
+            <article class="fact-card"><span class="fact-icon fact-icon-green">⌘</span><span class="fact-label">Study program</span><strong id="student-program">Not set</strong><small>Your area of study</small></article>
+            <article class="fact-card"><span class="fact-icon fact-icon-purple">▤</span><span class="fact-label">Study year</span><strong id="student-year">Not set</strong><small>Your current year of study</small></article>
+          </div>
+
+          <section class="panel student-summary">
+            <div class="panel-heading"><div><h2>My student details</h2><p>Your personal registration information.</p></div><button class="text-button" data-view="profile">Edit my profile <span aria-hidden="true">→</span></button></div>
+            <div class="detail-grid">
+              <div class="detail-item"><span>Full name</span><strong id="detail-name">—</strong></div>
+              <div class="detail-item"><span>Email address</span><strong id="detail-email">—</strong></div>
+              <div class="detail-item"><span>Phone number</span><strong id="detail-phone">Not provided</strong></div>
+              <div class="detail-item"><span>Registration date</span><strong id="detail-registered">—</strong></div>
+            </div>
+          </section>
+          <div class="bottom-note"><span>✳</span> Your student details are private to your account.</div>
+        </section>
+
+        <section id="view-profile" class="content-view hidden">
+          <div class="welcome-row"><div><span class="eyebrow peach-eyebrow">YOUR ACCOUNT</span><h1>My profile</h1><p>Manage your personal and study details.</p></div></div>
+          <div class="profile-layout">
+            <section class="panel profile-panel">
+              <div class="panel-heading"><div><h2>Student information</h2><p>Keep your registration details current.</p></div></div>
+              <div class="profile-cover"><span id="profile-avatar" class="profile-avatar">S</span><span><strong id="profile-name">Student</strong><small id="profile-student-id">Student ID · —</small></span></div>
+              <form id="profile-form" class="profile-form">
+                <div class="form-grid">
+                  <label class="field">Full name<input name="name" required maxlength="80"></label>
+                  <label class="field">Email address<input name="email" type="email" required maxlength="254"></label>
+                  <label class="field">Phone number <span class="optional">(optional)</span><input name="phone" type="tel" maxlength="30"></label>
+                  <label class="field">Study program <span class="optional">(optional)</span><input name="program" maxlength="100"></label>
+                  <label class="field">Study year <span class="optional">(optional)</span><select name="year"><option value="">Choose a year</option><option value="1">Year 1</option><option value="2">Year 2</option><option value="3">Year 3</option><option value="4">Year 4</option><option value="5">Year 5</option><option value="6">Year 6</option><option value="7">Year 7</option><option value="8">Year 8</option></select></label>
+                </div>
+                <p id="profile-error" class="form-error" role="alert"></p>
+                <button class="button button-primary" type="submit">Save my details <span aria-hidden="true">→</span></button>
+              </form>
+            </section>
+            <section class="panel password-panel">
+              <div class="panel-heading"><div><h2>Account security</h2><p>Choose a strong password you don't use elsewhere.</p></div></div>
+              <form id="password-form" class="profile-form">
+                <label class="field">Current password<input name="currentPassword" type="password" autocomplete="current-password" required></label>
+                <label class="field">New password<input name="newPassword" type="password" minlength="8" maxlength="128" autocomplete="new-password" required></label>
+                <p id="password-error" class="form-error" role="alert"></p>
+                <button class="button button-outline" type="submit">Update password</button>
+              </form>
+            </section>
+          </div>
+        </section>
+        <footer class="main-footer">Made for your student journey <span>✳</span></footer>
+      </main>
+    </div>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
